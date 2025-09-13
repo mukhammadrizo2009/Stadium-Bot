@@ -2,7 +2,7 @@ from telegram import Update , ReplyKeyboardMarkup , KeyboardButton
 from telegram.ext import CallbackContext
 from database import LocalSession
 from models import User
-from app.send_menu import user_already_register
+from app.menus import user_already_register
 from app.register import register_message
 
 def check_register(update: Update , context: CallbackContext):
