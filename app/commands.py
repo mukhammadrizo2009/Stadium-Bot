@@ -12,6 +12,7 @@ def start(update: Update , context: CallbackContext):
             parse_mode = "markdown",
             reply_markup = ReplyKeyboardMarkup(
                 keyboard=[
+                    [KeyboardButton("Ro'yhatdan o'tganman! ✅")],
                     [KeyboardButton("Dasturda ro'yhatdan o'tish! 🪪") , KeyboardButton("Mehmoh sifatidan foydalanish! 🥷🏻")]
                 ],
                 resize_keyboard=True,
@@ -29,20 +30,20 @@ def stop(update: Update , context: CallbackContext):
         parse_mode = "markdown",
         reply_markup = ReplyKeyboardRemove()
     )
-    
-def help(update: Update , context: CallbackContext):
+
+def send_group_link(update: Update , context: CallbackContext):
     bot = context.bot
     user = update.effective_user
     
     bot.send_message(
         chat_id = user.id,
-        text = "Yordam uchun ADMINGA murojat qiling! \n\n"\
-            f"Admin: @mirzayeoff 🌐",
+        text = "Gruhga qo'shilishingiz mumkin! 🔖\n\
+https://t.me/+_9C4KN-TlOA3Mjc6",
             reply_markup = ReplyKeyboardMarkup(
-                keyboard=[
-                    [KeyboardButton("Dasturni davom ettirish! ↩️") , KeyboardButton("Dasturni tugatish! 🛑")]
-                ], 
-                resize_keyboard=True,
-                one_time_keyboard=True
-            )
+            keyboard=[
+                    [KeyboardButton("Dasturni davom ettirish! ↩️"),KeyboardButton("Dasturni tugatish! 🛑")]
+                ],
+            resize_keyboard=True,
+            one_time_keyboard=True
+        )
     )

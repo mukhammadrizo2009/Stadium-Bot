@@ -12,7 +12,8 @@ def send_menu(update: Update , context: CallbackContext):
         reply_markup = ReplyKeyboardMarkup(
             keyboard=[
                 [KeyboardButton("Stadion buyurtma qilish 📌") , KeyboardButton("Profilim 👤")],
-                [KeyboardButton("Yordam 👮🏻‍♂️") , KeyboardButton("Dasturni tugatish ❌")]
+                [KeyboardButton("Yordam 👮🏻‍♂️") , KeyboardButton("Dasturni tugatish ❌")],
+                [KeyboardButton("Bot gruhiga qo'shilish! 💡")]
             ],
             one_time_keyboard=True,
             resize_keyboard=True
@@ -72,7 +73,8 @@ def user_already_register(update: Update , context: CallbackContext):
         reply_markup = ReplyKeyboardMarkup(
             keyboard=[
                 [KeyboardButton("Stadion buyurtma qilish 📌") , KeyboardButton("Profilim 👤")],
-                [KeyboardButton("Yordam 👮🏻‍♂️") , KeyboardButton("Dasturni tugatish ❌")]
+                [KeyboardButton("Yordam 👮🏻‍♂️") , KeyboardButton("Dasturni tugatish ❌")],
+                [KeyboardButton("Bot gruhiga qo'shilish! 💡")]
             ],
             one_time_keyboard=True,
             resize_keyboard=True

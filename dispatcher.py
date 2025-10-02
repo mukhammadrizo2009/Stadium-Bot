@@ -1,10 +1,15 @@
 from config import config , register_states , booking_station_states
-from telegram.ext import Updater , CommandHandler , MessageHandler , Filters , ConversationHandler
-from app.commands import start , stop , help
+from telegram.ext import Updater , CommandHandler , MessageHandler , Filters , ConversationHandler, CallbackQueryHandler
+from app.commands import start , stop , send_group_link
+from app.helps import help , bot_error , order_error
 from app.check_user import check_register
 from app.register import get_name , set_name , set_contact , save_user
 from database import engine , Base
 from app.menus import send_date , send_menu
+from app.profile import profile
+from Guest.menu import send_guest_menu
+from Guest.stadium_order import order
+#from app.booking import handle_date , handle_time , handle_confirm
 
 Base.metadata.create_all(engine)
 
@@ -20,7 +25,8 @@ def main() -> None:
     # MessageHandler = Start
     
     dispatcher.add_handler(MessageHandler(Filters.text("Dasturda ro'yhatdan o'tish! 🪪"), check_register))
-    dispatcher.add_handler(MessageHandler(Filters.text("Mehmoh sifatidan foydalanish! 🥷🏻"), check_register))
+    dispatcher.add_handler(MessageHandler(Filters.text("Ro'yhatdan o'tganman! ✅"), check_register))
+    dispatcher.add_handler(MessageHandler(Filters.text("Mehmoh sifatidan foydalanish! 🥷🏻"), send_guest_menu))
     
     # Conversation Handler = Register
     
@@ -58,9 +64,15 @@ def main() -> None:
     dispatcher.add_handler(MessageHandler(Filters.text("Dasturni tugatish! 🛑") , stop))
     dispatcher.add_handler(MessageHandler(Filters.text("Yordam 👮🏻‍♂️") , help))
     dispatcher.add_handler(MessageHandler(Filters.text("Dasturni tugatish ❌") , stop))
-                        
+    dispatcher.add_handler(MessageHandler(Filters.text("Bot gruhiga qo'shilish! 💡"), send_group_link))
+    dispatcher.add_handler(MessageHandler(Filters.text("Profilim 👤"), profile))
+    dispatcher.add_handler(MessageHandler(Filters.text("Bot kamchiliklari! 👾"), bot_error))
+    dispatcher.add_handler(MessageHandler(Filters.text("Buyurtmada muammolar! 🥡"), order_error))
+    dispatcher.add_handler(MessageHandler(Filters.text("Boshqa muammo 🚧"), bot_error))
     
     # MessageHandler = Guest
+    dispatcher.add_handler(MessageHandler(Filters.text("Ro'yhatdan o'tish! 🪪"), check_register))
+    dispatcher.add_handler(MessageHandler(Filters.text("Stadion buyurtmasi 📌"), order))
     
     
     updater.start_polling()
