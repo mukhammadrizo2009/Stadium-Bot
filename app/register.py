@@ -66,7 +66,7 @@ def set_contact(update: Update , context: CallbackContext):
     bot.send_message(
         chat_id = user.id,
         text = "Ro'yhatdan o'tish uchun ma'lumotlaringizni tasdiqlang! 📃\n\n" \
-            f"🔖 Ismim Familyangiz: {user_data['name']}\n"\
+            f"🔖 Ismingiz Familyangiz: {user_data['name']}\n"\
                 f"📞 Telefon raqamingiz: {user_data['contact']}",
                 parse_mode = "markdown",
                 reply_markup = ReplyKeyboardMarkup(
